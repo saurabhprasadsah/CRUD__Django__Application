@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>CRUD | Home</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand text-light" href="/">CRUD</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-light active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/add">Add</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" action="/search/" method="post">
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    {% block body %}
+     <div class="container-fluid my-3">
+        <div class="mid-section">
+          <h5 class="bg-dark text-light text-center p-2"> Employee Record</h5>
+          <table class="table table-bordered table-hover table-primary ">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>City</th> 
+              <th>Email</th>
+              <th>State</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            {% for item in data %}
+            <tr>    
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.city}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.state}}</td>
+              <td><a href="/edit/{{item.id}}"><span class="material-symbols-outlined text-dark">edit</span></a></td> 
+              <td><a href="/delete/{{item.id}}"><span class="material-symbols-outlined text-dark">Delete</span></a></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+     </div>
+    {% endblock  %}   
+    <footer class="bg-dark p-1 text-light text-center  fixed-bottom ">
+        <h7>copyright@mycrudapp.com</h7>  
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
