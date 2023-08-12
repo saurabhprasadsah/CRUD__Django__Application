@@ -61,11 +61,7 @@ def searchPage(Request):
     if(Request.method=="POST"): 
          search = Request.POST.get("search")
          data = Employee.objects.filter(Q(name__icontains=search)|Q(city__icontains=search)|Q(state__icontains=search)|Q(phone__icontains=search)|Q(email__icontains=search))
-
          return render(Request, "index.html", {'data':data})
-
-         
-
     else:
          return HttpResponseRedirect("/")     
 
