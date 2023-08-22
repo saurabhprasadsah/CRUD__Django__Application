@@ -52,7 +52,7 @@ def editrecord(Request,id):
              data.save()
              return HttpResponseRedirect("/")
         return render(Request,"edit.html",{'data':data}) 
-    except: 
+    except:         
            pass   
     return HttpResponseRedirect("/")
 

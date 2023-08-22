@@ -1,0 +1,10 @@
+.mid-section{
+     height: 600px;
+     position: relative;
+     overflow: auto;
+}
+.my-pagination{
+     position: absolute;
+     bottom: 0;
+     left: 30%;
+}
